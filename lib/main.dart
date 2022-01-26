@@ -7,6 +7,8 @@ import 'package:oauth2_client/oauth2_helper.dart';
 import 'package:oauth2_client_test/discord_oauth2_client.dart';
 import 'package:oauth2_client_test/spotify_oauth2_client.dart';
 
+import 'myOauthclient.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -43,12 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
   final redirectUri = 'mytestapp://oauth2redirect';
   final customUriScheme = 'mytestapp';
 
-  List _clientNames = ["GitHub", "Google", "LinkedIn", "Spotify", "Discord"];
+  List _clientNames = [
+    "GitHub",
+    "Google",
+    "LinkedIn",
+    "Spotify",
+    "Discord",
+    "onDgo"
+  ];
 
   List<DropdownMenuItem<String>> _dropDownMenuItems;
   String _currentClient;
 
-  _MyHomePageState() {}
+  _MyHomePageState();
 
   @override
   void initState() {
@@ -59,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<DropdownMenuItem<String>> getDropDownMenuItems() {
-    List<DropdownMenuItem<String>> items = new List();
+    List<DropdownMenuItem<String>> items = [];
     for (String clientName in _clientNames) {
       items.add(
           new DropdownMenuItem(value: clientName, child: new Text(clientName)));
@@ -78,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (client != null) {
       List scopes =
-          scopesController.text.split(',').map((s) => s.trim()).toList();
+          scopesController.text.split(' ').map((s) => s.trim()).toList();
 
       String clientId = clientIdController.text;
       String clientSecret = clientSecretController.text;
@@ -120,6 +129,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
       case 'Discord':
         client = DiscordOAuth2Client(
+            redirectUri: redirectUri, customUriScheme: customUriScheme);
+        break;
+
+      case 'onDgo':
+        client = MyOAuth2Client(
             redirectUri: redirectUri, customUriScheme: customUriScheme);
         break;
     }
