@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final clientSecretController = TextEditingController();
   final scopesController = TextEditingController();
 
-  final redirectUri = 'mytestapp://oauth2redirect';
+  final redirectUri = 'ng.ondgo.ondgoapp://callback';
   final customUriScheme = 'mytestapp';
 
   List _clientNames = [
@@ -62,8 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _dropDownMenuItems = getDropDownMenuItems();
-    _currentClient = _dropDownMenuItems[0].value;
-
+    _currentClient = _dropDownMenuItems[5].value;
+    //clientIdController.text = "onDgoAppClient";
     super.initState();
   }
 
@@ -161,9 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
               padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
               child: Text('Client Id', style: TextStyle(fontSize: 14))),
-          TextField(
-            controller: clientIdController,
-          ),
+          TextField(controller: clientIdController),
           Padding(
               padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
               child: Text('Client Secret', style: TextStyle(fontSize: 14))),
