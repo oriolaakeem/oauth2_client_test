@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final scopesController = TextEditingController();
 
   final redirectUri = 'ng.ondgo.ondgoapp://callback';
-  final customUriScheme = 'mytestapp';
+  final customUriScheme = 'ng.ondgo.ondgoapp';
 
   List _clientNames = [
     "GitHub",
